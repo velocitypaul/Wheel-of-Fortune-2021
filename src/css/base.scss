@@ -1,20 +1,42 @@
 @import 'variables';
+@import 'reset';
+
+* {
+  //border: 1px solid;
+  padding: 5px;;
+}
+
+img { 
+  max-width: 100%;
+  height: auto;
+}
 
 body {
-  box-sizing: border-box;
   font-family: sans-serif;
 }
 
-header {
+header, main {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
+.logo {
+  background: rgba(0,0,0,.05);
   display: flex;
+  justify-content: center;
 }
 
 .scores {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,.10);
 }
 
 .player {
     margin: 0 5px;
+    border: 1px solid;
+    padding: 5px;
     
     &__bank {
       border-width: 1px;
@@ -36,5 +58,70 @@ header {
       border-color: $red;
       color: $red;
     }
+}
+
+.button {
+  display: block;
+  padding: 10px 15px;
+  margin: 5px auto;
+}
+
+.controls {
+  background: rgba(0,0,0,.15);
+}
+
+.round {
+  
+  display: flex;
+  flex-direction: column;
+  
+  .title {
+    text-align: center;
+  }
+  
+  ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+  }
+
+}
+
+.game {
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background: rgba(0,0,0,.25);
+}
+
+.chooser {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.game-display {
+  display: grid;
+  grid-template-columns: 3fr 9fr;
+}
+
+.puzzle-grid {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+  &__row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+  &__item {
+    height: 3em;
+    width: 2em;
+    margin: 0 5px;
+    background: rgba(0,0,0,.25);
+  }
 }
 
