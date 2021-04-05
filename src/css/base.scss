@@ -2,7 +2,7 @@
 @import 'reset';
 
 * {
-  //border: 1px solid;
+  border: 1px solid;
   padding: 5px;;
 }
 
@@ -88,7 +88,6 @@ header, main {
 }
 
 .game {
-  height: 400px;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -103,7 +102,29 @@ header, main {
 
 .game-display {
   display: grid;
-  grid-template-columns: 3fr 9fr;
+  grid-template-columns: 4fr 9fr;
+}
+
+.wheel-value {
+  display: block;
+  text-align: center;
+}
+
+@keyframes spin  {
+  25% { transform: rotate(0deg); }
+  50% { transform: rotate(360deg); }
+  100% { transform: rotate(375deg); }
+}
+
+.wheel img {
+  max-width: none;
+}
+
+.wheel img.spinning {
+  animation-name: spin;
+  animation-duration: 5s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
 }
 
 .puzzle-grid {
