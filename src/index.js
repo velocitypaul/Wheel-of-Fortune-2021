@@ -1,6 +1,8 @@
 // This is the JavaScript entry file - your code begins here
 // Do not delete or rename this file ********
-
+import { data } from './js/data.js';
+import Game from './js/game.js';
+import Player from './js/player.js';
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
 
@@ -8,20 +10,35 @@ import './css/base.scss';
 import './images/wheel_of_fortune_small_logo.png';
 import './images/wheel_fortune_circle.png';
 
-console.log('This is the JavaScript entry file - your code begins here.');
+window.onload = function() {
+	const game = new Game();
+	game.nextRound();
+	game.nextRound();
+	game.nextRound();
+	console.log(game);
+}
 
+
+// GLobal Variables
 var spinButton = document.querySelector('.spinButton');
-var wheel = document.querySelector('.wheel img');
-
-spinButton.addEventListener('click', spinWheel);
+var wheelImage = document.querySelector('.wheel img');
+var wheelAmount = document.querySelector('.wheel-value');
 
 //listen for spin the wheel click
-//make spin sound
-//spin the wheel transform: rotate()
-//select random index from wheel/
-//stop wheel at index * 15° + 7.5°
-//Display value
+spinButton.addEventListener('click', spinWheel);
 
 function spinWheel() {
-	wheel.classList.toggle('spinning');
+	//spin the wheel
+	//wheelImage.classList.toggle('spinning');
+	//select random index from wheel array
+	var randIndex = Math.floor(Math.random() * data.wheel.length);
+	var randIndexValue = data.wheel[randIndex];
+	//stop wheel at index * 15°
+	var wheelStopLocation = (randIndex * 15) + 360;
+	console.log(wheelStopLocation);
+	//display value
+	wheelAmount.innerText = randIndexValue;
+	wheelImage.animate({ transform: [ 'rotate(0deg)', 'rotate(' + wheelStopLocation + 'deg)' ] },
+	 { duration: 1000, iterations: 1 });
+	
 }

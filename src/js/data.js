@@ -1,4 +1,4 @@
-const data = {
+export const data = {
 	response_code: {
 		version: '1.2',
 		termsofService: 'http://frontend.turing.io/projects/module-2/wheel-of-fortune.html',
