@@ -13,8 +13,8 @@ import './images/wheel_fortune_circle.png';
 window.onload = function() {
 	const game = new Game();
 	game.nextRound();
-	game.nextRound();
-	game.nextRound();
+	game.nextPlayer();
+	game.nextPlayer();
 	console.log(game);
 }
 
@@ -23,6 +23,7 @@ window.onload = function() {
 var spinButton = document.querySelector('.spinButton');
 var wheelImage = document.querySelector('.wheel img');
 var wheelAmount = document.querySelector('.wheel-value');
+var instructionsPlayer = document.querySelector('.js__instructionsPlayer');
 
 //listen for spin the wheel click
 spinButton.addEventListener('click', spinWheel);
