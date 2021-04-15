@@ -3,6 +3,7 @@
 import { data } from './js/data.js';
 import Game from './js/game.js';
 import Player from './js/player.js';
+import Puzzle from './js/puzzle.js';
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
 
@@ -12,10 +13,14 @@ import './images/wheel_fortune_circle.png';
 
 window.onload = function() {
 	const game = new Game();
-	game.nextRound();
-	game.nextPlayer();
-	game.nextPlayer();
-	console.log(game);
+	console.log(data.puzzles);
+	getNewPuzzle();
+} 
+
+function getNewPuzzle() {
+	 var allPuzzles = [data.puzzles].flat();
+	 allPuzzles.map();
+	 console.log(allPuzzles);
 }
 
 
@@ -23,7 +28,6 @@ window.onload = function() {
 var spinButton = document.querySelector('.spinButton');
 var wheelImage = document.querySelector('.wheel img');
 var wheelAmount = document.querySelector('.wheel-value');
-var instructionsPlayer = document.querySelector('.js__instructionsPlayer');
 
 //listen for spin the wheel click
 spinButton.addEventListener('click', spinWheel);
