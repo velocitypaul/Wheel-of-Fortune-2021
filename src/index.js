@@ -12,16 +12,32 @@ import './images/wheel_of_fortune_small_logo.png';
 import './images/wheel_fortune_circle.png';
 
 window.onload = function() {
-	const game = new Game();
-	console.log(data.puzzles);
-	getNewPuzzle();
-} 
+	getPuzzles();
+	startGame();} 
 
-function getNewPuzzle() {
-	 var allPuzzles = [data.puzzles].flat();
-	 allPuzzles.map();
-	 console.log(allPuzzles);
+function getPuzzles() {
+	 var mergedPuzzles = [];
+	 Object.entries(data.puzzles).forEach( function(puzzleSet) {
+		 var puzzleBank = puzzleSet[1].puzzle_bank;
+		 mergedPuzzles.push(puzzleBank);
+	 });
+	 return window.mergedPuzzles = mergedPuzzles.flat(99);
+	 
 }
+
+function loadRandomPuzzle() {
+	var randIndex = 30;
+	//var randIndex = Math.floor(Math.random() * mergedPuzzles.length);
+	var randPuzzle = mergedPuzzles[randIndex];
+	return randPuzzle;
+}
+
+function startGame() {
+	var game = new Game();
+	var randomPuzzle = loadRandomPuzzle();
+	console.log(randomPuzzle);
+}
+
 
 
 // GLobal Variables
