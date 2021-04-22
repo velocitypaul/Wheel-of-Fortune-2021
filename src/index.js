@@ -4,46 +4,45 @@ import { data } from './js/data.js';
 import Game from './js/game.js';
 import Player from './js/player.js';
 import Puzzle from './js/puzzle.js';
-// An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
-
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/wheel_of_fortune_small_logo.png';
 import './images/wheel_fortune_circle.png';
 
+// Global Variables
+var spinButton = document.querySelector('.spinButton');
+var wheelImage = document.querySelector('.wheel img');
+var wheelAmount = document.querySelector('.wheel-value');
+var mergedPuzzles = [];
+var randomPuzzle;
+
 window.onload = function() {
 	getPuzzles();
-	startGame();} 
+	startGame();
+	console.log(mergedPuzzles);
+	console.log(randomPuzzle);
+}
+
 
 function getPuzzles() {
-	 var mergedPuzzles = [];
 	 Object.entries(data.puzzles).forEach( function(puzzleSet) {
 		 var puzzleBank = puzzleSet[1].puzzle_bank;
 		 mergedPuzzles.push(puzzleBank);
 	 });
-	 return window.mergedPuzzles = mergedPuzzles.flat(99);
-	 
+	 return mergedPuzzles = mergedPuzzles.flat(99);	 
 }
 
 function loadRandomPuzzle() {
-	var randIndex = 30;
-	//var randIndex = Math.floor(Math.random() * mergedPuzzles.length);
+	//var randIndex = 30;
+	var randIndex = Math.floor(Math.random() * mergedPuzzles.length);
 	var randPuzzle = mergedPuzzles[randIndex];
 	return randPuzzle;
 }
 
 function startGame() {
 	var game = new Game();
-	var randomPuzzle = loadRandomPuzzle();
-	console.log(randomPuzzle);
+	randomPuzzle = loadRandomPuzzle();
 }
 
-
-
-// GLobal Variables
-var spinButton = document.querySelector('.spinButton');
-var wheelImage = document.querySelector('.wheel img');
-var wheelAmount = document.querySelector('.wheel-value');
 
 //listen for spin the wheel click
 spinButton.addEventListener('click', spinWheel);
