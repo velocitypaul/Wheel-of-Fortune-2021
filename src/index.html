@@ -3,9 +3,11 @@
   <head>
     <title>Wheel of Fortune</title>
   </head> 
-  <body>
+  <body class="round1 activePlayer1">
     <header>
-      <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">   
+      <div class="logo">
+        <img src="./images/wheel_of_fortune_small_logo.png" alt="wheel of fortune logo" height="144px" width="161px">
+      </div>  
       <section class="scores">
         <div class="player player--1">
           <div class="player__bank">
@@ -19,20 +21,114 @@
             <span class="player__dollar">$</span>
             <span class="player__amount">0.00</span>
           </div>
-          <p class="player__name">Player 1</p>
+          <p class="player__name">Player 2</p>
         </div>
         <div class="player player--3">
           <div class="player__bank">
             <span class="player__dollar">$</span>
             <span class="player__amount">0.00</span>
           </div>
-          <p class="player__name">Player 1</p>
+          <p class="player__name">Player 3</p>
         </div>
       </section>      
     </header>
 
     <main>
-      <p>Just some Main text here.</p>
+      <section class="controls">
+        <div class="round">
+          <span class="round__title">Round:</span>
+          <ul>
+            <li class="round--1 round--active">1</li>
+            <li class="round--2">2</li>
+            <li class="round--3">3</li>
+            <li class="round--4">4</li>
+          </ul>
+        </div>
+        <div class="actions">
+          <button class="button spinButton">Spin the Wheel</button>
+          <button class="button">Solve the Puzzle</button>
+          <button class="button">Buy a Vowel</button>
+          <button class="button">Start a New Game</button>
+        </div>
+      </section>
+      <section class="game">
+        <div class="chooser">
+          <div class="instructions">Spin the wheel, then choose a letter.</div>
+          <div class="letters">
+            ABCDEFGHIJKLMINOPQRSTUVWXYZ
+          </div>
+        </div>
+        <div class="game-display">
+          <section class="wheel">
+            <img src="./images/wheel_fortune_circle.png" alt="wheel of fortune logo" height="300px" width="300px">
+            <span class="wheel-value">600</span>
+          </section>
+          <section class="puzzle-grid">
+            <!--Row 1 -->
+            <div class="puzzle-grid__row 1">
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+            </div>
+            <div class="puzzle-grid__row 2">
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+            </div>
+            <div class="puzzle-grid__row 3">
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+            </div>
+            <div class="puzzle-grid__row 4">
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+              <div class="puzzle-grid__item"></div>
+            </div>
+            
+          </section>
+        </div>
+      </section>
     </main>
 
     
