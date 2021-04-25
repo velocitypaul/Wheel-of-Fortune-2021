@@ -5,12 +5,10 @@ export default class Game {
 	}
 	
 	nextRound() {
-		document.querySelector('body').classList.remove( 'round' + this.round );
 		this.round ++;
 		if( this.round === 5 ) {
 			this.round = 1;
 		}
-		document.querySelector('body').classList.add( 'round' + this.round );
 	}
 	
 	nextPlayer() {

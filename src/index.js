@@ -14,12 +14,18 @@ var wheelImage = document.querySelector('.wheel img');
 var wheelAmount = document.querySelector('.wheel-value');
 var mergedPuzzles = [];
 var randomPuzzle;
+var correctAnswer;
+var game;
 
 window.onload = function() {
 	getPuzzles();
 	startGame();
 	console.log(mergedPuzzles);
 	console.log(randomPuzzle);
+	console.log(correctAnswer);
+	document.querySelector('body').classList.remove( 'round' + game.round );
+	game.nextRound();
+	document.querySelector('body').classList.add( 'round' + game.round );
 }
 
 
@@ -28,19 +34,20 @@ function getPuzzles() {
 		 var puzzleBank = puzzleSet[1].puzzle_bank;
 		 mergedPuzzles.push(puzzleBank);
 	 });
-	 return mergedPuzzles = mergedPuzzles.flat(99);	 
+	 return mergedPuzzles = mergedPuzzles.flat(2);	 
 }
 
 function loadRandomPuzzle() {
 	//var randIndex = 30;
 	var randIndex = Math.floor(Math.random() * mergedPuzzles.length);
-	var randPuzzle = mergedPuzzles[randIndex];
-	return randPuzzle;
+	randomPuzzle = mergedPuzzles[randIndex];
+	correctAnswer = randomPuzzle.correct_answer;
 }
 
 function startGame() {
-	var game = new Game();
-	randomPuzzle = loadRandomPuzzle();
+	game = new Game();
+	loadRandomPuzzle();
+	
 }
 
 
