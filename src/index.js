@@ -16,6 +16,7 @@ var mergedPuzzles = [];
 var randomPuzzle;
 var correctAnswer;
 var game;
+var puzzleGridRows = document.querySelector('.puzzle-grid').children;
 
 window.onload = function() {
   getPuzzles();
@@ -23,6 +24,7 @@ window.onload = function() {
   console.log(mergedPuzzles);
   console.log(randomPuzzle);
   console.log(correctAnswer);
+  loadPuzzleGrid();
   document.querySelector('body').classList.remove( 'round' + game.round );
   game.nextRound();
   document.querySelector('body').classList.add( 'round' + game.round );
@@ -42,6 +44,16 @@ function getPuzzle() {
   //var randIndex = Math.floor(Math.random() * mergedPuzzles.length);
   randomPuzzle = mergedPuzzles[randIndex];
   correctAnswer = randomPuzzle.correct_answer.split(" ");
+}
+
+function loadPuzzleGrid() {
+  for (let i = 0; i < correctAnswer.length; i++) {
+    var answer = correctAnswer[i];
+    var rowArray = puzzleGridRows[i].children;
+    for (let i = 0; i < answer.length; i++) {
+      rowArray[i].innerHTML = answer[i];
+    }
+  }
 }
 
 function loadPuzzle() {
