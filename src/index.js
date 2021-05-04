@@ -24,10 +24,8 @@ window.onload = function() {
   console.log(mergedPuzzles);
   console.log(randomPuzzle);
   console.log(correctAnswer);
+  startNewRound();
   loadPuzzleGrid();
-  document.querySelector('body').classList.remove( 'round' + game.round );
-  game.nextRound();
-  document.querySelector('body').classList.add( 'round' + game.round );
 }
 
 
@@ -40,35 +38,32 @@ function getPuzzles() {
 }
 
 function getPuzzle() {
-  var randIndex = 30;
-  //var randIndex = Math.floor(Math.random() * mergedPuzzles.length);
+  //var randIndex = 30;
+  var randIndex = Math.floor(Math.random() * mergedPuzzles.length);
   randomPuzzle = mergedPuzzles[randIndex];
   correctAnswer = randomPuzzle.correct_answer.split(" ");
 }
 
 function loadPuzzleGrid() {
-  for (let i = 0; i < correctAnswer.length; i++) {
-    var answer = correctAnswer[i];
-    var rowArray = puzzleGridRows[i].children;
-    for (let i = 0; i < answer.length; i++) {
-      rowArray[i].innerHTML = answer[i];
+  for (let i in correctAnswer) {
+    var word = correctAnswer[i];
+    var boxes = puzzleGridRows[i].children;
+    for (let letter in word) {
+      boxes[letter].classList.add("hasLetter");
+      boxes[letter].innerHTML = word[letter];
     }
-  }
-}
-
-function loadPuzzle() {
-  var line1 = correctAnswer[0];
-  var line2 = correctAnswer[1];
-  var line3 = correctAnswer[2];
-  var line4 = correctAnswer[3];
-  console.log(line1);
+  } 
 }
 
 function startGame() {
   game = new Game();
   getPuzzle();
-  loadPuzzle();
-	
+}
+
+function startNewRound() {
+  document.querySelector('body').classList.remove( 'round' + game.round );
+  game.nextRound();
+  document.querySelector('body').classList.add( 'round' + game.round );
 }
 
 
