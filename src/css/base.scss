@@ -122,6 +122,22 @@ header, main {
   grid-template-columns: 4fr 9fr;
 }
 
+.letters {
+  margin: 10px 0;
+  
+  &__char {
+    display: inline-block;
+    transition: all .2s ease-in-out;
+    font-weight: 600;
+    
+    &:hover {
+      cursor: pointer;
+      transform: scale(2);
+      color: $blue;
+    }
+  }
+}
+
 .wheel-value {
   display: block;
   text-align: center;
@@ -160,6 +176,36 @@ header, main {
     width: 2em;
     margin: 0 5px;
     background: rgba(0,0,0,.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    &.hasLetter {
+      background: #ffffff;
+      position: relative;
+      
+      &:before {
+        content: " ";
+        height: 3em;
+        width: 2em;
+        position: absolute;
+        background: #ffffff;
+        opacity: 0;
+      }
+      
+      &:hover:before {
+        opacity: 0; 
+      }
+    }
+    
+  }
+  
+  &__letter {
+    font-weight: 600;
+    font-size: 1.7em;
+    color: #000000; 
+    line-height: 0;
+    text-transform: uppercase;
   }
 }
 

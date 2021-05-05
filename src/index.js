@@ -50,7 +50,8 @@ function loadPuzzleGrid() {
     var boxes = puzzleGridRows[i].children;
     for (let letter in word) {
       boxes[letter].classList.add("hasLetter");
-      boxes[letter].innerHTML = word[letter];
+      boxes[letter].innerHTML = 
+      `<span class="puzzle-grid__letter">${word[letter]}</span>`;
     }
   } 
 }
