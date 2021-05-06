@@ -133,9 +133,23 @@ header, main {
     &:hover {
       cursor: pointer;
       transform: scale(2);
-      color: $blue;
+    }
+    
+    &.previouslySelected {
+      opacity: .3;
+      pointer-events: none;
     }
   }
+}
+
+.activePlayer1 .letters__char:hover {
+  color: $purple;
+}
+.activePlayer2 .letters__char:hover {
+  color: $green;
+}
+.activePlayer3 .letters__char:hover {
+  color: $red;
 }
 
 .wheel-value {
@@ -195,6 +209,10 @@ header, main {
       
       &:hover:before {
         opacity: 0; 
+      }
+      
+      &.revealed {
+        background: pink;
       }
     }
     

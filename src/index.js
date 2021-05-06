@@ -17,6 +17,7 @@ var randomPuzzle;
 var correctAnswer;
 var game;
 var puzzleGridRows = document.querySelector('.puzzle-grid').children;
+var gameLetters = document.querySelector('.letters');
 
 window.onload = function() {
   getPuzzles();
@@ -50,9 +51,8 @@ function loadPuzzleGrid() {
     var boxes = puzzleGridRows[i].children;
     for (let letter in word) {
       boxes[letter].classList.add("hasLetter");
-      boxes[letter].innerHTML = 
-      `<span class="puzzle-grid__letter">${word[letter]}</span>`;
-    }
+      boxes[letter].innerHTML = `<span class="puzzle-grid__letter">${word[letter]}</span>`;
+    } 
   } 
 }
 
@@ -67,6 +67,32 @@ function startNewRound() {
   document.querySelector('body').classList.add( 'round' + game.round );
 }
 
+gameLetters.addEventListener('click', function(event) {
+  if (event.target.classList.contains('vowel')) {
+    buyVowel(event);
+  } else {
+    selectLetter(event);
+  }
+});
+
+function selectLetter(event) {
+  var selectedChar = event.target.innerText.trim();
+  for (let i in correctAnswer) {
+    var boxes = puzzleGridRows[i].children;
+    for ( let box of boxes) {
+      if ( selectedChar === box.innerText.trim() ) {
+        box.classList.add('revealed');
+        event.target.classList.add('previouslySelected');
+      } else {
+        event.target.classList.add('previouslySelected');
+      }
+    }
+  } 
+}
+
+function buyVowel() {
+  console.log('buying a vowel');
+}
 
 //listen for spin the wheel click
 spinButton.addEventListener('click', spinWheel);
