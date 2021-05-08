@@ -16,6 +16,9 @@ var mergedPuzzles = [];
 var randomPuzzle;
 var correctAnswer;
 var game;
+var player1;
+var player2;
+var player3;
 var puzzleGridRows = document.querySelector('.puzzle-grid').children;
 var gameLetters = document.querySelector('.letters');
 
@@ -27,6 +30,7 @@ window.onload = function() {
   console.log(correctAnswer);
   startNewRound();
   loadPuzzleGrid();
+  console.log(player1.score);
 }
 
 
@@ -58,6 +62,9 @@ function loadPuzzleGrid() {
 
 function startGame() {
   game = new Game();
+  player1 = new Player("Player 1");
+  player2 = new Player("Player 2");
+  player3 = new Player("Player 3");
   getPuzzle();
 }
 
