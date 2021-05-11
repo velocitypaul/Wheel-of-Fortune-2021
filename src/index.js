@@ -21,37 +21,41 @@ var player2;
 var player3;
 var puzzleGridRows = document.querySelector('.puzzle-grid').children;
 var gameLetters = document.querySelector('.letters');
+var gamePuzzles = [];
 
 window.onload = function() {
-  getPuzzles();
+  getFourRandomPuzzles();
+  console.log(gamePuzzles);
   startGame();
-  console.log(mergedPuzzles);
-  console.log(randomPuzzle);
-  console.log(correctAnswer);
-  startNewRound();
-  loadPuzzleGrid();
-  console.log(player1.score);
+  loadPuzzleGrid((game.round - 1));
+  //startNewRound();
 }
 
 
-function getPuzzles() {
+function getAllPuzzles() {
+  //could this be simpler?
+  console.log(data.puzzles)
   Object.entries(data.puzzles).forEach( function(puzzleSet) {
     var puzzleBank = puzzleSet[1].puzzle_bank;
     mergedPuzzles.push(puzzleBank);
   });
-  return mergedPuzzles = mergedPuzzles.flat(2);	 
+  console.log(mergedPuzzles);
+  return mergedPuzzles.flat(2);
 }
 
-function getPuzzle() {
-  //var randIndex = 30;
-  var randIndex = Math.floor(Math.random() * mergedPuzzles.length);
-  randomPuzzle = mergedPuzzles[randIndex];
-  correctAnswer = randomPuzzle.correct_answer.split(" ");
+function getFourRandomPuzzles() {
+  mergedPuzzles = getAllPuzzles();
+  for (let i = 0; i < 4; i++) {
+    var randIndex = Math.floor(Math.random() * mergedPuzzles.length);
+    gamePuzzles.push(mergedPuzzles[randIndex]);
+  }
 }
 
 function loadPuzzleGrid() {
-  for (let i in correctAnswer) {
-    var word = correctAnswer[i];
+  let currentAnswer = gamePuzzles[(game.round - 1)].correct_answer.split(" ");
+  console.log(currentAnswer);
+  for (let i in currentAnswer) {
+    var word = currentAnswer[i];
     var boxes = puzzleGridRows[i].children;
     for (let letter in word) {
       boxes[letter].classList.add("hasLetter");
@@ -65,13 +69,14 @@ function startGame() {
   player1 = new Player("Player 1");
   player2 = new Player("Player 2");
   player3 = new Player("Player 3");
-  getPuzzle();
+  
 }
 
 function startNewRound() {
   document.querySelector('body').classList.remove( 'round' + game.round );
   game.nextRound();
   document.querySelector('body').classList.add( 'round' + game.round );
+  loadPuzzleGrid((game.round - 1));
 }
 
 gameLetters.addEventListener('click', function(event) {

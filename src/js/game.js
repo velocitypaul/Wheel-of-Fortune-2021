@@ -1,7 +1,8 @@
 export default class Game {
-	constructor( round = 1, activePlayer = 1 ) {
+	constructor( round = 1, activePlayer = 1, puzzles = [] ) {
 		this.round = round;
-		this.activePlayer = activePlayer;	
+		this.activePlayer = activePlayer;
+		this.puzzles = puzzles;
 	}
 	
 	nextRound() {
