@@ -12,9 +12,8 @@ import './images/wheel_fortune_circle.png';
 var spinButton = document.querySelector('.spinButton');
 var wheelImage = document.querySelector('.wheel img');
 var wheelAmount = document.querySelector('.wheel-value');
-var mergedPuzzles = [];
 var randomPuzzle;
-var correctAnswer;
+var currentAnswer;
 var game;
 var player1;
 var player2;
@@ -24,79 +23,50 @@ var gameLetters = document.querySelector('.letters');
 var gamePuzzles = [];
 
 window.onload = function() {
-  getFourRandomPuzzles();
-  console.log(gamePuzzles);
   startGame();
-  loadPuzzleGrid((game.round - 1));
-  //startNewRound();
+  game.getFourRandomPuzzles(data.puzzles);
+  loadPuzzleGrid();
 }
 
-
-function getAllPuzzles() {
-  //could this be simpler?
-  console.log(data.puzzles)
-  Object.entries(data.puzzles).forEach( function(puzzleSet) {
-    var puzzleBank = puzzleSet[1].puzzle_bank;
-    mergedPuzzles.push(puzzleBank);
-  });
-  console.log(mergedPuzzles);
-  return mergedPuzzles.flat(2);
-}
-
-function getFourRandomPuzzles() {
-  mergedPuzzles = getAllPuzzles();
-  for (let i = 0; i < 4; i++) {
-    var randIndex = Math.floor(Math.random() * mergedPuzzles.length);
-    gamePuzzles.push(mergedPuzzles[randIndex]);
-  }
-}
-
-function loadPuzzleGrid() {
-  let currentAnswer = gamePuzzles[(game.round - 1)].correct_answer.split(" ");
-  console.log(currentAnswer);
-  for (let i in currentAnswer) {
-    var word = currentAnswer[i];
-    var boxes = puzzleGridRows[i].children;
-    for (let letter in word) {
-      boxes[letter].classList.add("hasLetter");
-      boxes[letter].innerHTML = `<span class="puzzle-grid__letter">${word[letter]}</span>`;
-    } 
-  } 
-}
 
 function startGame() {
   game = new Game();
   player1 = new Player("Player 1");
   player2 = new Player("Player 2");
   player3 = new Player("Player 3");
-  
 }
 
-function startNewRound() {
-  document.querySelector('body').classList.remove( 'round' + game.round );
-  game.nextRound();
-  document.querySelector('body').classList.add( 'round' + game.round );
-  loadPuzzleGrid((game.round - 1));
+function loadPuzzleGrid() {
+  let index = game.round - 1;
+  currentAnswer = game.puzzles[index].correct_answer.split(" ");
+  for (let line in currentAnswer) {
+    var word = currentAnswer[line];
+    var boxes = puzzleGridRows[line].children;
+    for (let letter in word) {
+      boxes[letter].classList.add("hasLetter");
+      //boxes[letter].innerHTML = `<span class="puzzle-grid__letter">${word[letter]}</span>`;
+    } 
+  } 
 }
 
 gameLetters.addEventListener('click', function(event) {
+  var selectedChar = event.target.innerText.trim();
   if (event.target.classList.contains('vowel')) {
     buyVowel(event);
   } else {
-    selectLetter(event);
+    selectLetter(selectedChar);
+    event.target.classList.add('previouslySelected');
   }
 });
 
-function selectLetter(event) {
-  var selectedChar = event.target.innerText.trim();
-  for (let i in correctAnswer) {
-    var boxes = puzzleGridRows[i].children;
+function selectLetter(letter) {
+  console.log(currentAnswer);
+  //find indexes of letter in answer and corresponding box
+  for (let line in currentAnswer) {
+    var boxes = puzzleGridRows[line].children;
     for ( let box of boxes) {
-      if ( selectedChar === box.innerText.trim() ) {
+      if ( letter === box.innerText.trim() ) {
         box.classList.add('revealed');
-        event.target.classList.add('previouslySelected');
-      } else {
-        event.target.classList.add('previouslySelected');
       }
     }
   } 
@@ -104,6 +74,14 @@ function selectLetter(event) {
 
 function buyVowel() {
   console.log('buying a vowel');
+}
+
+
+function startNewRound() {
+  document.querySelector('body').classList.remove( 'round' + game.round );
+  game.nextRound();
+  document.querySelector('body').classList.add( 'round' + game.round );
+  loadPuzzleGrid(game.round);
 }
 
 //listen for spin the wheel click
